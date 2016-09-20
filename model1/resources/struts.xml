@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	"http://struts.apache.org/dtds/struts-2.1.dtd"><struts>
+	<constant name="struts.action.extension" value="action,htm"></constant>
+	<package name="initAction" extends="struts-default" >
+		<action name="IMG" class="com.opentae.data.user.util.VerificationCode" method="getpic"></action>
+	</package>
+	<include file="struts/struts-init.xml"></include>
+	<include file="struts/struts-json.xml"></include>
+	<!--<include file="old_struts/struts-init.xml"></include>-->
+	<!--<include file="old_struts/struts-init1.xml"></include>-->
+	<!--<include file="old_struts/struts-init2.xml"></include>-->
+	<!--<include file="old_struts/struts-json.xml"></include>-->
+	<!--<include file="old_struts/struts-json1.xml"></include>-->
+	<!--<include file="old_struts/struts-json2.xml"></include>-->
+	<!--<include file="old_struts/struts-json-edit.xml"></include>-->
+</struts>    

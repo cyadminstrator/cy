@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+<context:component-scan base-package="com.opentae.*,com.shigu.*,com.openJar.*,com.common.base.*" >
+	</context:component-scan>
+
+    <bean id="mapperInterceptor" class="com.opentae.core.mybatis.mapperhelper.MapperInterceptor">
+        <property name="properties">
+            <map>
+                <entry key="mappers" value="com.opentae.core.mybatis.mapper.Mapper"></entry>
+            </map>
+        </property>
+    </bean>
+    <import resource="spring-database/mall.xml"/>
+     <bean id="druid-stat-interceptor"
+    class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+  </bean>
+
+<bean
+    class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <property name="proxyTargetClass" value="true" />
+    <property name="beanNames">
+        <list>
+            <!-- 这里配置需要拦截的bean id列表 -->
+            <value>*Service</value>
+        </list>
+    </property>
+    <property name="interceptorNames">
+        <list>
+            <value>druid-stat-interceptor</value>
+        </list>
+    </property>
+</bean>
+</beans>

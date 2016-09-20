@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="initAction-newsite" extends="struts-default" >
+		
+		<interceptors>
+			<!-- 定义权限控制拦截器 -->
+			<interceptor name="authority"
+						 class="com.opentae.data.user.util.MyFilter"
+					/>
+			<!-- 定义一个包含权限控制的拦截器栈 -->
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="authority" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<!-- 定义默认拦截器 -->
+		<default-interceptor-ref name="mydefault" />
+		<!-- 登录页 -->				
+		<action name="login" class="com.opentae.data.user.actions.UserAction" method="loginInit">
+			<result name="init">login.jsp</result>
+		</action>
+		<!-- 注册页 -->
+		<action name="register" class="com.opentae.data.user.actions.UserAction" method="registerInit">
+			<result name="init">WEB-INF/public/register.jsp</result>
+		</action>
+		<!-- 首页 -->
+		<action name="index" class="com.opentae.data.user.actions.UserAction" method="indexInit">
+			<result name="init">index.jsp</result>
+		</action>
+		<!-- 留言板页 -->
+		<action name="massage" class="com.opentae.data.user.actions.MassageAction" method="massageInit">
+			<result name="init">WEB-INF/public/massage.jsp</result>
+		</action>
+	</package>
+</struts>
